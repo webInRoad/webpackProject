@@ -1,0 +1,24 @@
+{
+  "name": "webpackProject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webInRoad/webpackProject.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/webInRoad/webpackProject/issues"
+  },
+  "homepage": "https://github.com/webInRoad/webpackProject#readme",
+  "devDependencies": {
+    "webpack": "^4.25.1",
+    "webpack-cli": "^3.1.2"
+  }
+}
