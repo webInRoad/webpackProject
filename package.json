@@ -16,13 +16,25 @@
   "bugs": {
     "url": "https://github.com/webInRoad/webpackProject/issues"
   },
+  "browserslist": [ 
+    "defaults",
+    "not ie < 11",
+    "last 2 versions",
+    "> 1%",
+    "iOS 7",
+    "last 3 iOS versions"
+  ],
   "homepage": "https://github.com/webInRoad/webpackProject#readme",
   "devDependencies": {
-    "css-loader": "^2.1.1",
-    "file-loader": "^6.2.0",
-    "style-loader": "^2.0.0",
-    "url-loader": "^4.1.1",
-    "webpack": "^4.25.1",
-    "webpack-cli": "^3.1.2"
+    "autoprefixer": "^9.3.1",
+    "css-loader": "^1.0.1",
+    "file-loader": "^2.0.0",
+    "node-sass": "^4.10.0",
+    "postcss-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "url-loader": "^1.1.2",
+    "webpack-cli": "^3.1.2",
+    "webpack": "^4.25.1"
   }
 }

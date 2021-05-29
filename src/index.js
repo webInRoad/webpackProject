@@ -13,7 +13,7 @@
 // import SideBar from "./sidebar";
 // import Content from "./content";
 import avatar from "./avatar.png";
-import "./index.css";
+import "./index.scss";
 console.info(avatar, "avatar");
 
 // new Header();
