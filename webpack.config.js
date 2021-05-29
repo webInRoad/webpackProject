@@ -55,6 +55,11 @@ module.exports = {
       template: "./src/index.html",
     }),
   ],
+  devServer: {
+    contentBase: "./dist", // 在哪里创建个服务
+    open: true,
+    port: "3000",
+  },
   output: {
     // publicPath: "https://s15.tianyuimg.com/community/",
     path: path.resolve(__dirname, "build"),

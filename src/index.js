@@ -1,2 +1,2 @@
 // ES Moudule 模块引入方式
-conssle.info(2323);
+console.info(23);
