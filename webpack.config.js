@@ -5,7 +5,9 @@ module.exports = {
   mode: "development",
   // entry: "./src/index.js",
   entry: {
+    // 多入口
     main: "./src/index.js",
+    sub: "./src/index.js",
   },
   module: {
     rules: [
@@ -51,7 +53,9 @@ module.exports = {
     }),
   ],
   output: {
+    publicPath: "https://s15.tianyuimg.com/community/",
     path: path.resolve(__dirname, "build"),
-    filename: "dist.js",
+    // filename: "dist.js",
+    filename: "[name]-[contentHash].js",
   },
 };
