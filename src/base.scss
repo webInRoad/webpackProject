@@ -1,0 +1,31 @@
+.avatar {
+  width: 200px;
+  height: 200px;
+  transform: translate(100px,100px);
+}
+@font-face {
+  font-family: "iconfont"; /* Project id 2579064 */
+  src: url('./font/iconfont.woff2?t=1622274164207') format('woff2'),
+       url('./font/iconfont.woff?t=1622274164207') format('woff'),
+       url('./font/iconfont.ttf?t=1622274164207') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-002-man:before {
+  content: "\e6fb";
+}
+
+.icon-042-man:before {
+  content: "\e70b";
+}
+
+.icon-046-woman:before {
+  content: "\e70d";
+}

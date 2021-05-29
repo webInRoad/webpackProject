@@ -20,8 +20,25 @@ module.exports = {
         },
       },
       {
+        test: /\.(woff|ttf)/,
+        use: {
+          loader: "file-loader",
+        },
+      },
+      {
         test: /\.scss$/,
-        use: ["style-loader", "css-loader", "sass-loader", "postcss-loader"],
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: {
+              importLoaders: 2, // 2 表示往后退 2 格，即表示所有的 scss 都从 postcss-loader 开始处理，而不是直接用 css-loader, 哪怕是在 scss 文件里以 @import 引入的
+              // modules: true, //模块化
+            },
+          },
+          "sass-loader",
+          "postcss-loader",
+        ],
       },
     ],
   },
