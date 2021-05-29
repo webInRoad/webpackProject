@@ -7,8 +7,11 @@ module.exports = {
   entry: {
     // 多入口
     main: "./src/index.js",
-    sub: "./src/index.js",
+    // sub: "./src/index.js",
   },
+  // development devtool: 'cheap-module-eval-source-map',
+  // production devtool: 'cheap-module-source-map',
+  devtool: "cheap-module-eval-source-map",
   module: {
     rules: [
       {
@@ -53,7 +56,7 @@ module.exports = {
     }),
   ],
   output: {
-    publicPath: "https://s15.tianyuimg.com/community/",
+    // publicPath: "https://s15.tianyuimg.com/community/",
     path: path.resolve(__dirname, "build"),
     // filename: "dist.js",
     filename: "[name]-[contentHash].js",
