@@ -9,10 +9,17 @@
 // var Sidebar = require('./sidebar.js');
 // var Content = require('./content.js');
 
-import Header from "./header";
-import SideBar from "./sidebar";
-import Content from "./content";
+// import Header from "./header";
+// import SideBar from "./sidebar";
+// import Content from "./content";
+import avatar from "./avatar.png";
+console.info(avatar, "avatar");
 
-new Header();
-new SideBar();
-new Content();
+// new Header();
+// new SideBar();
+// new Content();
+
+var img = new Image();
+img.src = avatar;
+var root = document.getElementById("root");
+root.append(img);
