@@ -13,6 +13,7 @@
 // import SideBar from "./sidebar";
 // import Content from "./content";
 import avatar from "./avatar.png";
+import "./index.css";
 console.info(avatar, "avatar");
 
 // new Header();
@@ -21,5 +22,6 @@ console.info(avatar, "avatar");
 
 var img = new Image();
 img.src = avatar;
+img.classList.add("avatar");
 var root = document.getElementById("root");
 root.append(img);

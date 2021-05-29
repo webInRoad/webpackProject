@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/webInRoad/webpackProject#readme",
   "devDependencies": {
-    "css-loader": "^5.2.6",
+    "css-loader": "^2.1.1",
     "file-loader": "^6.2.0",
     "style-loader": "^2.0.0",
     "url-loader": "^4.1.1",
