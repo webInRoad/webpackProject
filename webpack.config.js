@@ -1,6 +1,7 @@
 const path = require("path");
 const CleanPlugin = require("clean-webpack-plugin");
 const HtmlPlugin = require("html-webpack-plugin");
+const webpack = require("webpack");
 module.exports = {
   mode: "development",
   // entry: "./src/index.js",
@@ -47,6 +48,10 @@ module.exports = {
           "postcss-loader",
         ],
       },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader", "postcss-loader"],
+      },
     ],
   },
   plugins: [
@@ -54,16 +59,19 @@ module.exports = {
     new HtmlPlugin({
       template: "./src/index.html",
     }),
+    new webpack.HotModuleReplacementPlugin(), // webpack-dev-server 内部自动将 HotModuleReplacementPlugin 加入了
   ],
   devServer: {
     contentBase: "./dist", // 在哪里创建个服务
     open: true,
     port: "3000",
+    hot: true,
+    hotOnly: true, // 构建失败时，也不刷新页面，比如页面显示错误,也不刷新
   },
   output: {
     // publicPath: "https://s15.tianyuimg.com/community/",
     path: path.resolve(__dirname, "build"),
     // filename: "dist.js",
-    filename: "[name]-[contentHash].js",
+    filename: "[name]-[hash].js",
   },
 };
