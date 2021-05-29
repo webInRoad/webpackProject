@@ -1,4 +1,6 @@
 const path = require("path");
+const CleanPlugin = require("clean-webpack-plugin");
+const HtmlPlugin = require("html-webpack-plugin");
 module.exports = {
   mode: "development",
   // entry: "./src/index.js",
@@ -42,8 +44,14 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new CleanPlugin(["build"]),
+    new HtmlPlugin({
+      template: "./src/index.html",
+    }),
+  ],
   output: {
     path: path.resolve(__dirname, "build"),
-    filename: "main.js",
+    filename: "dist.js",
   },
 };
