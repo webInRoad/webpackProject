@@ -31,6 +31,7 @@
     "@babel/plugin-transform-runtime": "^7.2.0",
     "@babel/core": "^7.2.0",
     "@babel/preset-env": "^7.2.0",
+    "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.4",
     "autoprefixer": "^9.3.1",
     "clean-webpack-plugin": "^1.0.0",
@@ -49,6 +50,8 @@
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
     "@babel/runtime": "^7.2.0",
-    "@babel/runtime-corejs2": "^7.2.0"
+    "@babel/runtime-corejs2": "^7.2.0",
+    "react": "^16.6.3",
+    "react-dom": "^16.6.3"
   }
 }

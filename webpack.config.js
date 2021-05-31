@@ -69,7 +69,7 @@ module.exports = {
             },
           },
           "sass-loader",
-          "postcss-loader",
+          "postcss-loader", // 样式兼容
         ],
       },
       {
