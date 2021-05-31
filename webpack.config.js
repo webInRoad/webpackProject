@@ -16,6 +16,30 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          // options: {
+          //   // 业务代码使用 babel 的场景
+          //   // presets: [
+          //   //   [
+          //   //     "@babel/preset-env",
+          //   //     {
+          //   //       targets: {
+          //   //         // 要支持的浏览器
+          //   //         chrome: "67",
+          //   //       },
+          //   //       useBuiltIns: "usage", // 按需引入, 没使用到的 es6 代码不进行 polyfill
+          //   //     },
+          //   //   ],
+          //   // ],
+          //   // 类库使用 plugin-transform-runtime
+          //   // 作为第三方组件或 UI 组件，作为库打包的时候，不需要使用 polyfill(会污染全局环境),plugin-transform-runtime 会以闭包形式注入, 不存在污染全局环境问题
+          // },
+        },
+      },
+      {
         test: /\.(png|jpg|gif|jpeg)$/,
         use: {
           // loader: "file-loader",
