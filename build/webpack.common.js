@@ -73,14 +73,16 @@ module.exports = {
     ],
   },
   plugins: [
-    new CleanPlugin(["dist"]),
+    new CleanPlugin(["dist"], {
+      root: path.resolve(__dirname, "../"),
+    }),
     new HtmlPlugin({
       template: "./src/index.html",
     }),
   ],
   output: {
     // publicPath: "https://s15.tianyuimg.com/community/",
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "../dist"),
     // filename: "dist.js",
     filename: "[name]-[hash].js",
   },
