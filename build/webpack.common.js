@@ -3,7 +3,6 @@ const CleanPlugin = require("clean-webpack-plugin");
 const HtmlPlugin = require("html-webpack-plugin");
 module.exports = {
   entry: {
-    lodash: "./src/lodash.js",
     // 多入口
     main: "./src/index.js",
     // sub: "./src/index.js",
@@ -73,6 +72,11 @@ module.exports = {
       },
     ],
   },
+  // optimization: {
+  //   splitChunks: {
+  //     chunks: "all",
+  //   },
+  // },
   plugins: [
     new CleanPlugin(["dist"], {
       root: path.resolve(__dirname, "../"),
