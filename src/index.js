@@ -58,10 +58,12 @@
 // import "./style.css";
 // import "./style2.css";
 
-import $ from "jquery";
-import _ from "lodash";
-import { ui } from "./jquery.ui";
-ui();
-const dom = $("<div>");
-dom.html(_.join(["dell", "lee"], "---"));
-$("body").append(dom);
+// import $ from "jquery";
+// import _ from "lodash";
+// import { ui } from "./jquery.ui";
+// ui();
+// const dom = $("<div>");
+// dom.html(_.join(["dell", "lee"], "---"));
+// $("body").append(dom);
+
+console.info(this === window);
