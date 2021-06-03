@@ -87,7 +87,7 @@ module.exports = {
           test: /[\\/]node_modules[\\/]/,
           priority: -10, // 优先级，越大越高
           reuseExistingChunk: true, // 相同模块打包后，不再重新打包，而是直接用现成的
-          filename: "vendors.js",
+          filename: "vendors11.js", // 对异步加载的模块不起作用，异步加载的名称要通过注释实现 /*webpackChunkName:"lodash"*/
         },
         default: {
           priority: -20,
