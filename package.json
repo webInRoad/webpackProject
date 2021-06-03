@@ -7,10 +7,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev-build": "webpack --config ./build/webpack.dev.js",
-    "build": "webpack --config ./build/webpack.prod.js",
+    "dev-build": "webpack --config ./build/webpack.common.js",
+    "build": "webpack --env.production --config ./build/webpack.common.js",
     "watch": "webpack --watch",
-    "start": "webpack-dev-server --config ./build/webpack.dev.js",
+    "start": "webpack-dev-server --config ./build/webpack.common.js",
     "generateAnalyzFile": "webpack --profile --json > ./dist/stats.json",
     "analyz": "webpack-bundle-analyzer --port 8888 ./dist/stats.json"
   },

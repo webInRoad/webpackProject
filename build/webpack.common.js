@@ -7,7 +7,10 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const BundleAnalyzerPlugin =
   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 const webpack = require("webpack");
-module.exports = {
+const merge = require("webpack-merge");
+const devConfig = require("./webpack.dev.js");
+const prodConfig = require("./webpack.prod.js");
+const commonConfig = {
   entry: {
     // 多入口
     main: "./src/index.js",
@@ -150,4 +153,12 @@ module.exports = {
     // publicPath: "https://s15.tianyuimg.com/community/",
     path: path.resolve(__dirname, "../dist"),
   },
+};
+
+module.exports = (env) => {
+  if (env && env.production) {
+    return merge(commonConfig, prodConfig);
+  } else {
+    return merge(commonConfig, devConfig);
+  }
 };
