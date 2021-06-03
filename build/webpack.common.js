@@ -93,7 +93,8 @@ module.exports = {
           test: /[\\/]node_modules[\\/]/,
           priority: -10, // 优先级，越大越高
           reuseExistingChunk: true, // 相同模块打包后，不再重新打包，而是直接用现成的
-          filename: "vendors11.js", // 对异步加载的模块不起作用，异步加载的名称要通过注释实现 /*webpackChunkName:"lodash"*/
+          name: "vendors",
+          // filename: "vendors.js", // 对异步加载的模块不起作用，异步加载的名称要通过注释实现 /*webpackChunkName:"lodash"*/
         },
         default: {
           priority: -20,
@@ -112,7 +113,7 @@ module.exports = {
     }),
     new BundleAnalyzerPlugin({
       analyzerMode: "disabled", // 不启动展示打包报告的http服务器
-      generateStatsFile: true, // 是否生成stats.json文件
+      generateStatsFile: false, // 是否生成stats.json文件
     }),
     // 异步加载模块，加上 PreloadWebpackPlugin 插件默认就会有 preload 作用。
     // 要配成 prefetch, 需要添加 rel 参数，如下
@@ -126,10 +127,13 @@ module.exports = {
       chunkFilename: "[name].chunk.css",
     }),
   ],
+  performance: false,
   output: {
     // publicPath: "https://s15.tianyuimg.com/community/",
     path: path.resolve(__dirname, "../dist"),
     // filename: "dist.js",
-    filename: "[name]-[hash].js",
+    // filename: "[name]-[hash].js",
+    filename: "[name].[contenthash].js",
+    chunkFilename: "[name].[contenthash].js",
   },
 };
