@@ -48,9 +48,12 @@
 //   });
 // });
 
-document.addEventListener("click", () => {
-  // import(/* webpackPrefetch: true */ "./click.js")
-  import("./click.js").then(({ default: func }) => {
-    func();
-  });
-});
+// document.addEventListener("click", () => {
+//   // import(/* webpackPrefetch: true */ "./click.js")
+//   import("./click.js").then(({ default: func }) => {
+//     func();
+//   });
+// });
+
+import "./style.css";
+import "./style2.css";

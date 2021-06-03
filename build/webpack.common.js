@@ -2,6 +2,8 @@ const path = require("path");
 const CleanPlugin = require("clean-webpack-plugin");
 const HtmlPlugin = require("html-webpack-plugin");
 const PreloadWebpackPlugin = require("preload-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const BundleAnalyzerPlugin =
   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 module.exports = {
@@ -57,7 +59,7 @@ module.exports = {
       {
         test: /\.scss$/,
         use: [
-          "style-loader",
+          MiniCssExtractPlugin.loader,
           {
             loader: "css-loader",
             options: {
@@ -71,12 +73,13 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader", "postcss-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
       },
     ],
   },
   // 没配时, webpack 有提供了默认值, 会对异步加载的模块进行代码分割
   optimization: {
+    minimizer: [new OptimizeCSSAssetsPlugin({})], // 压缩 css
     splitChunks: {
       chunks: "all",
       minSize: 0,
@@ -117,6 +120,10 @@ module.exports = {
     // new PreloadWebpackPlugin(),
     new PreloadWebpackPlugin({
       rel: "prefetch",
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[name].chunk.css",
     }),
   ],
   output: {
