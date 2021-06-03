@@ -72,11 +72,31 @@ module.exports = {
       },
     ],
   },
-  // optimization: {
-  //   splitChunks: {
-  //     chunks: "all",
-  //   },
-  // },
+  // 没配时, webpack 有提供了默认值, 会对异步加载的模块进行代码分割
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+      minSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      automaticNameDelimiter: "~",
+      name: true,
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10, // 优先级，越大越高
+          reuseExistingChunk: true, // 相同模块打包后，不再重新打包，而是直接用现成的
+          filename: "vendors.js",
+        },
+        default: {
+          priority: -20,
+          reuseExistingChunk: true, // 相同模块打包后，不再重新打包，而是直接用现成的
+          filename: "common.js",
+        },
+      },
+    },
+  },
   plugins: [
     new CleanPlugin(["dist"], {
       root: path.resolve(__dirname, "../"),
