@@ -22,6 +22,10 @@ const devConfig = {
     hot: true,
     hotOnly: true, // 构建失败时，也不刷新页面，比如页面显示错误,也不刷新
   },
+  output: {
+    // filename: "dist.js",
+    filename: "[name].js",
+  },
 };
 
 module.exports = merge(commonConfig, devConfig);

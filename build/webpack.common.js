@@ -6,6 +6,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const BundleAnalyzerPlugin =
   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+const webpack = require("webpack");
 module.exports = {
   entry: {
     // 多入口
@@ -126,14 +127,15 @@ module.exports = {
       filename: "[name].css",
       chunkFilename: "[name].chunk.css",
     }),
+    new webpack.ProvidePlugin({
+      $: "jQuery", // 用到 $ ,就引入 jQuery, 并命名为 $
+      _: "lodash",
+      _join: ["lodash", "join"],
+    }),
   ],
   performance: false,
   output: {
     // publicPath: "https://s15.tianyuimg.com/community/",
     path: path.resolve(__dirname, "../dist"),
-    // filename: "dist.js",
-    // filename: "[name]-[hash].js",
-    filename: "[name].[contenthash].js",
-    chunkFilename: "[name].[contenthash].js",
   },
 };
