@@ -1,6 +1,8 @@
 const path = require("path");
 const CleanPlugin = require("clean-webpack-plugin");
 const HtmlPlugin = require("html-webpack-plugin");
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 module.exports = {
   entry: {
     // 多入口
@@ -103,6 +105,10 @@ module.exports = {
     }),
     new HtmlPlugin({
       template: "./src/index.html",
+    }),
+    new BundleAnalyzerPlugin({
+      analyzerMode: "disabled", // 不启动展示打包报告的http服务器
+      generateStatsFile: true, // 是否生成stats.json文件
     }),
   ],
   output: {
