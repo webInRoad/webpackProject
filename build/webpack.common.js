@@ -114,10 +114,10 @@ module.exports = {
     // 异步加载模块，加上 PreloadWebpackPlugin 插件默认就会有 preload 作用。
     // 要配成 prefetch, 需要添加 rel 参数，如下
     // 不需要用到魔法注释 /*webpackPreload:true */
-    new PreloadWebpackPlugin(),
-    // new PreloadWebpackPlugin({
-    //   rel: "prefetch",
-    // }),
+    // new PreloadWebpackPlugin(),
+    new PreloadWebpackPlugin({
+      rel: "prefetch",
+    }),
   ],
   output: {
     // publicPath: "https://s15.tianyuimg.com/community/",
