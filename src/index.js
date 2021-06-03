@@ -35,7 +35,8 @@
 
 // 换种写法
 async function getComponent() {
-  const { default: _ } = await import("lodash");
+  // const { default: _ } = await import(/*webpackPreload:true*/ "lodash");
+  const { default: _ } = await import(/*webpackChunkName:'lodash'*/ "lodash");
   var element = document.createElement("div");
   element.innerHTML = _.join(["a", "d", "c"], "***");
   return element;

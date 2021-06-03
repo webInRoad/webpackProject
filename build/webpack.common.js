@@ -1,6 +1,7 @@
 const path = require("path");
 const CleanPlugin = require("clean-webpack-plugin");
 const HtmlPlugin = require("html-webpack-plugin");
+const PreloadWebpackPlugin = require("preload-webpack-plugin");
 const BundleAnalyzerPlugin =
   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 module.exports = {
@@ -110,6 +111,13 @@ module.exports = {
       analyzerMode: "disabled", // 不启动展示打包报告的http服务器
       generateStatsFile: true, // 是否生成stats.json文件
     }),
+    // 异步加载模块，加上 PreloadWebpackPlugin 插件默认就会有 preload 作用。
+    // 要配成 prefetch, 需要添加 rel 参数，如下
+    // 不需要用到魔法注释 /*webpackPreload:true */
+    new PreloadWebpackPlugin(),
+    // new PreloadWebpackPlugin({
+    //   rel: "prefetch",
+    // }),
   ],
   output: {
     // publicPath: "https://s15.tianyuimg.com/community/",

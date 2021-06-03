@@ -8,8 +8,8 @@
     "build": "webpack --config ./build/webpack.prod.js",
     "watch": "webpack --watch",
     "start": "webpack-dev-server --config ./build/webpack.dev.js",
-    "generateAnalyzFile": "webpack --profile --json > ./dist/stats.json", 
-    "analyz": "webpack-bundle-analyzer --port 8888 ./dist/stats.json" 
+    "generateAnalyzFile": "webpack --profile --json > ./dist/stats.json",
+    "analyz": "webpack-bundle-analyzer --port 8888 ./dist/stats.json"
   },
   "repository": {
     "type": "git",
@@ -43,6 +43,7 @@
     "html-webpack-plugin": "^3.2.0",
     "node-sass": "^4.10.0",
     "postcss-loader": "^3.0.0",
+    "preload-webpack-plugin": "^3.0.0-beta.4",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
     "url-loader": "^1.1.2",
