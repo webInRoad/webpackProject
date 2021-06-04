@@ -66,4 +66,18 @@
 // dom.html(_.join(["dell", "lee"], "---"));
 // $("body").append(dom);
 
-console.info(this === window);
+// console.info(this === window);
+
+console.info("hello 少年");
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker
+      .register("/service-worker.js")
+      .then((registration) => {
+        console.log("SW registered: ", registration);
+      })
+      .catch((registrationError) => {
+        console.log("SW registration failed: ", registrationError);
+      });
+  });
+}
