@@ -13,9 +13,9 @@ const prodConfig = require("./webpack.prod.js");
 const commonConfig = {
   entry: {
     // 多入口
-    sub: "./src/dom.tsx",
     // sub: "./src/dom.tsx",
-    // sub: "./src/index.js",
+    // sub: "./src/dom.tsx",
+    main: "./src/index.js",
   },
   module: {
     rules: [
@@ -26,9 +26,9 @@ const commonConfig = {
           {
             loader: "babel-loader",
           },
-          {
-            loader: "imports-loader?this=>window",
-          },
+          // {
+          //   loader: "imports-loader?this=>window",
+          // },
         ],
       },
       // {

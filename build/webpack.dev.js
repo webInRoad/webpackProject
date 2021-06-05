@@ -19,6 +19,20 @@ module.exports = {
     port: "3000",
     hot: true,
     hotOnly: true, // 构建失败时，也不刷新页面，比如页面显示错误,也不刷新
+    proxy: {
+      "/api/v1/": {
+        target: "https://cnodejs.org/",
+        pathRewrite: {
+          // path 地址的重定向
+          topics: "topic/5433d5e4e737cbe96dcef312",
+        },
+        changeOrigin: true,
+        headers: {
+          host: "cnodejs.org",
+        },
+        // secure: false,
+      },
+    },
   },
   output: {
     // filename: "dist.js",
