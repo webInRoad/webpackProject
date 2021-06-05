@@ -13,7 +13,8 @@ const prodConfig = require("./webpack.prod.js");
 const commonConfig = {
   entry: {
     // 多入口
-    main: "./src/index.js",
+    sub: "./src/dom.tsx",
+    // sub: "./src/dom.tsx",
     // sub: "./src/index.js",
   },
   module: {
@@ -55,6 +56,11 @@ const commonConfig = {
       //   },
       // },
       {
+        test: /\.tsx?$/,
+        use: "ts-loader",
+        exclude: /node_modules/,
+      },
+      {
         test: /\.(png|jpg|gif|jpeg)$/,
         use: {
           // loader: "file-loader",
@@ -95,7 +101,7 @@ const commonConfig = {
   },
   // 没配时, webpack 有提供了默认值, 会对异步加载的模块进行代码分割
   optimization: {
-    minimizer: [new OptimizeCSSAssetsPlugin({})], // 压缩 css
+    // minimizer: [new OptimizeCSSAssetsPlugin({})], // 压缩 css
     splitChunks: {
       chunks: "all",
       minSize: 0,
