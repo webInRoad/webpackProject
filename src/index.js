@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { BrowserRouter, Route } from "react-router-dom";
-import ReactDom from "react-dom";
-import Home from "./home.js";
-import List from "./list.js";
+import React, { Component } from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+import ReactDom from 'react-dom';
+import Home from './home';
+import List from './list';
 
 class App extends Component {
   render() {
@@ -17,4 +17,4 @@ class App extends Component {
   }
 }
 
-ReactDom.render(<App />, document.getElementById("root"));
+ReactDom.render(<App />, document.getElementById('root'));
