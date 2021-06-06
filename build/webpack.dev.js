@@ -19,6 +19,7 @@ module.exports = {
     port: "3000",
     hot: true,
     hotOnly: true, // 构建失败时，也不刷新页面，比如页面显示错误,也不刷新
+    historyApiFallback: true, // 所有的 404 请求都会响应 index.html 的内容
     proxy: {
       "/api/v1/": {
         target: "https://cnodejs.org/",
