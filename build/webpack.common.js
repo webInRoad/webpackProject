@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const CleanPlugin = require('clean-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
@@ -7,9 +8,58 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
+const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin');
 const devConfig = require('./webpack.dev.js');
 const prodConfig = require('./webpack.prod.js');
+const WebpackDeepScopePlugin = require('webpack-deep-scope-plugin').default;
 
+const plugins = [
+  new CleanPlugin(['dist'], {
+    root: path.resolve(__dirname, '../'),
+  }),
+  new HtmlPlugin({
+    template: './src/index.html',
+  }),
+  new BundleAnalyzerPlugin({
+    analyzerMode: 'disabled', // 不启动展示打包报告的http服务器
+    generateStatsFile: false, // 是否生成stats.json文件
+  }),
+  // 异步加载模块，加上 PreloadWebpackPlugin 插件默认就会有 preload 作用。
+  // 要配成 prefetch, 需要添加 rel 参数，如下
+  // 不需要用到魔法注释 /*webpackPreload:true */
+  // new PreloadWebpackPlugin(),
+  new PreloadWebpackPlugin({
+    rel: 'prefetch',
+  }),
+  new MiniCssExtractPlugin({
+    filename: '[name].css',
+    chunkFilename: '[name].chunk.css',
+  }),
+  new webpack.ProvidePlugin({
+    $: 'jQuery', // 用到 $ ,就引入 jQuery, 并命名为 $
+    _: 'lodash',
+    _join: ['lodash', 'join'],
+  }),
+  new WebpackDeepScopePlugin(),
+];
+
+// const files = fs.readdirSync(path.resolve(__dirname, '../dll'));
+// files.forEach((file) => {
+//   if (/.*\.dll.js/.test(file)) {
+//     plugins.push(
+//       new AddAssetHtmlWebpackPlugin({
+//         filepath: path.resolve(__dirname, '../dll', file),
+//       })
+//     );
+//   }
+//   if (/.*\.manifest.json/.test(file)) {
+//     plugins.push(
+//       new webpack.DllReferencePlugin({
+//         manifest: path.resolve(__dirname, '../dll', file),
+//       })
+//     );
+//   }
+// });
 const commonConfig = {
   entry: {
     // 多入口
@@ -28,6 +78,9 @@ const commonConfig = {
           },
           {
             loader: 'eslint-loader',
+            options: {
+              fix: true,
+            },
           },
           // {
           //   loader: "imports-loader?this=>window",
@@ -104,6 +157,7 @@ const commonConfig = {
   },
   // 没配时, webpack 有提供了默认值, 会对异步加载的模块进行代码分割
   optimization: {
+    usedExports: true,
     // minimizer: [new OptimizeCSSAssetsPlugin({})], // 压缩 css
     splitChunks: {
       chunks: 'all',
@@ -129,34 +183,7 @@ const commonConfig = {
       },
     },
   },
-  plugins: [
-    new CleanPlugin(['dist'], {
-      root: path.resolve(__dirname, '../'),
-    }),
-    new HtmlPlugin({
-      template: './src/index.html',
-    }),
-    new BundleAnalyzerPlugin({
-      analyzerMode: 'disabled', // 不启动展示打包报告的http服务器
-      generateStatsFile: false, // 是否生成stats.json文件
-    }),
-    // 异步加载模块，加上 PreloadWebpackPlugin 插件默认就会有 preload 作用。
-    // 要配成 prefetch, 需要添加 rel 参数，如下
-    // 不需要用到魔法注释 /*webpackPreload:true */
-    // new PreloadWebpackPlugin(),
-    new PreloadWebpackPlugin({
-      rel: 'prefetch',
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: '[name].chunk.css',
-    }),
-    new webpack.ProvidePlugin({
-      $: 'jQuery', // 用到 $ ,就引入 jQuery, 并命名为 $
-      _: 'lodash',
-      _join: ['lodash', 'join'],
-    }),
-  ],
+  plugins,
   performance: false,
   output: {
     // publicPath: "https://s15.tianyuimg.com/community/",

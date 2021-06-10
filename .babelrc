@@ -10,6 +10,8 @@
         "useBuiltIns": "usage" // 按需引入, 没使用到的 es6 代码不进行 polyfill
       }
     ],
+   
     "@babel/preset-react"
   ]
+  // "plugins": ["lodash"]
 }
