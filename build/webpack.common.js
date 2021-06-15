@@ -12,6 +12,7 @@ const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin');
 const devConfig = require('./webpack.dev.js');
 const prodConfig = require('./webpack.prod.js');
 const WebpackDeepScopePlugin = require('webpack-deep-scope-plugin').default;
+const CopyRightWebpackPlugin = require('../plugins/copyright-webpack-plugin');
 
 const plugins = [
   new CleanPlugin(['dist'], {
@@ -39,6 +40,9 @@ const plugins = [
   //   _join: ['lodash', 'join'],
   // }),
   new WebpackDeepScopePlugin(),
+  new CopyRightWebpackPlugin({
+    name: 'webInRoad',
+  }),
 ];
 
 // const files = fs.readdirSync(path.resolve(__dirname, '../dll'));
@@ -66,7 +70,10 @@ const commonConfig = {
     main: './src/index.js',
   },
   resolveLoader: {
-    modules: ['node_modules', '../loaders/'],
+    modules: [
+      path.resolve(__dirname, '../node_modules'),
+      path.resolve(__dirname, '../loaders'),
+    ],
   },
   module: {
     rules: [
