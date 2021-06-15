@@ -2,7 +2,7 @@ const path = require('path');
 const fs = require('fs');
 const CleanPlugin = require('clean-webpack-plugin');
 const HtmlPlugin = require('html-webpack-plugin');
-const PreloadWebpackPlugin = require('preload-webpack-plugin');
+// const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
@@ -28,18 +28,16 @@ const plugins = [
   // 要配成 prefetch, 需要添加 rel 参数，如下
   // 不需要用到魔法注释 /*webpackPreload:true */
   // new PreloadWebpackPlugin(),
-  new PreloadWebpackPlugin({
-    rel: 'prefetch',
-  }),
+  // new PreloadWebpackPlugin(),
   new MiniCssExtractPlugin({
     filename: '[name].css',
     chunkFilename: '[name].chunk.css',
   }),
-  new webpack.ProvidePlugin({
-    $: 'jQuery', // 用到 $ ,就引入 jQuery, 并命名为 $
-    _: 'lodash',
-    _join: ['lodash', 'join'],
-  }),
+  // new webpack.ProvidePlugin({
+  //   $: 'jQuery', // 用到 $ ,就引入 jQuery, 并命名为 $
+  //   _: 'lodash',
+  //   _join: ['lodash', 'join'],
+  // }),
   new WebpackDeepScopePlugin(),
 ];
 
@@ -67,12 +65,24 @@ const commonConfig = {
     // sub: "./src/dom.tsx",
     main: './src/index.js',
   },
+  resolveLoader: {
+    modules: ['node_modules', '../loaders/'],
+  },
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
         use: [
+          {
+            loader: 'replaceLoader',
+            options: {
+              age: 30,
+            },
+          },
+          {
+            loader: 'replaceLoaderAsync',
+          },
           {
             loader: 'babel-loader',
           },
